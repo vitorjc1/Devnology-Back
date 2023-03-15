@@ -19,9 +19,9 @@ final class CreateCustomerCommand extends FormRequest
     public function rules(): array
     {
         return [
-            'nome' => 'required|string',
-            'documento' => 'required|string',
-            'nascimento' => 'required|string',
+            'name' => 'required|string',
+            'document' => 'required|string',
+            'birth' => 'required|string',
         ];
     }
 
@@ -32,8 +32,8 @@ final class CreateCustomerCommand extends FormRequest
 
     protected function passedValidation()
     {
-        $this->customerDto->nome = $this->validated()['nome'];
-        $this->customerDto->documento = $this->validated()['documento'];
-        $this->customerDto->nascimento = $this->validated()['nascimento'];
+        $this->customerDto->name = $this->validated()['name'];
+        $this->customerDto->document = $this->validated()['document'];
+        $this->customerDto->birth = $this->validated()['birth'];
     }
 }

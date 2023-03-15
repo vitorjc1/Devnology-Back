@@ -2,10 +2,10 @@
 
 namespace App\Core\Http\Controllers;
 
-use Domain\Customer\Commands\CreateCustomer\CreateCustomerCommand;
+use Domain\Order\Commands\CreateOrder\CreateOrderCommand;
 use Support\CommandBus;
 
-class CustomerController extends Controller
+class OrderController extends Controller
 {
     private CommandBus $commandBus;
 
@@ -14,7 +14,7 @@ class CustomerController extends Controller
         $this->commandBus = $commandBus;
     }
 
-    public function Create(CreateCustomerCommand $command)
+    public function Create(CreateOrderCommand $command)
     {
         try {
             $response = $this->commandBus->handle($command);

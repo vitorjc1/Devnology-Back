@@ -19,5 +19,22 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::namespace('App\Core\Http\Controllers')->group(function () {
-    Route::post('/customer', 'CustomerController@Create');
+    Route::prefix('customer')->group(function () {
+        Route::get('/{id}', 'CustomerController@Get');
+        Route::post('/', 'CustomerController@Create');
+    });
 });
+
+Route::namespace('App\Core\Http\Controllers')->group(function () {
+    Route::prefix('product')->group(function () {
+        Route::get('/', 'ProductController@GetAll');
+        Route::get('/{external_id}/supplier/{supplier_id}', 'ProductController@Get');
+    });
+});
+
+Route::namespace('App\Core\Http\Controllers')->group(function () {
+    Route::prefix('order')->group(function () {
+        Route::post('/', 'OrderController@Create');
+    });
+});
+

@@ -6,7 +6,7 @@ use Spatie\LaravelData\Data;
 
 class CustomerDto extends Data
 {
-    public string $nome;
-    public string $documento;
-    public string $nascimento;
+    public string $name;
+    public string $document;
+    public string $birth;
 }

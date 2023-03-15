@@ -2,19 +2,25 @@
 
 namespace Domain\Customer\Commands\CreateCustomer;
 
-use App\Models\Customer;
+use Domain\Customer\Commands\CreateCustomer\CreateCustomerCommand;
+use Domain\Customer\Models\Customer;
 
 final class CreateCustomerHandler
 {
     public function __invoke(CreateCustomerCommand $createCustomerCommand)
     {
-        dd('funfou');
-        // $customer = Customer::create([
-        //     'nome' => $createCustomerCommand->customerDto->nome,
-        //     'documento' => $createCustomerCommand->customerDto->documento,
-        //     'nascimento' => $createCustomerCommand->customerDto->nascimento,
-        // ]);
+        $existCustomer = Customer::where('document', $createCustomerCommand->customerDto->document)->first();
 
-        // return $customer;
+        if ($existCustomer) {
+            throw new \Exception('Customer already exists');
+        }
+
+        $customer = Customer::create([
+            'name' => $createCustomerCommand->customerDto->name,
+            'document' => $createCustomerCommand->customerDto->document,
+            'birth' => $createCustomerCommand->customerDto->birth,
+        ]);
+
+        return $customer;
     }
 }
