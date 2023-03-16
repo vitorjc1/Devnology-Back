@@ -23,7 +23,7 @@ class CreateOrderCommand extends FormRequest
             'items' => 'required|array',
             'items.*.quantity' => 'required|integer|min:1',
             'items.*.supplier_id' => 'required|integer',
-            'items.*.id' => 'required|integer',
+            'items.*.external_id' => 'required|integer',
         ];
     }
 

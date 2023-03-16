@@ -28,7 +28,7 @@ class CreateOrderHandler
             $total = 0;
 
             foreach ($createOrderCommand->items as $item) {
-                $product = $this->ProductService->GetProduct($item['id'], $item['supplier_id']);
+                $product = $this->ProductService->GetProduct($item['external_id'], $item['supplier_id']);
 
                 if (!$product) {
                     throw new \Exception('Product not found');
