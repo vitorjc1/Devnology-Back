@@ -24,6 +24,21 @@ class Supplier1Services
         return $productsDto;
     }
 
+    public function GetByName(string $name): array
+    {
+        $products = json_decode(Http::get(Self::BASE_URL . 'brazilian_provider')->body(),true);
+
+        $productsDto = array();
+
+        foreach ($products as $product) {
+            if (strpos($product['nome'], $name) !== false) {
+                $productsDto[] = $this->MapperToProductDto($product);
+            }
+        }
+
+        return $productsDto;
+    }
+
     public function Get(int $id) : ProductDto
     {
         $product = Http::get(Self::BASE_URL . 'brazilian_provider/' . $id)->body();

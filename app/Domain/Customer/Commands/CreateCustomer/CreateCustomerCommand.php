@@ -11,9 +11,9 @@ final class CreateCustomerCommand extends FormRequest
 {
     public CustomerDto $customerDto;
 
-    public function __construct()
+    public function __construct(CustomerDto $customerDto)
     {
-        $this->customerDto = new CustomerDto();
+        $this->customerDto = $customerDto;
     }
 
     public function rules(): array

@@ -7,18 +7,12 @@ use Domain\Customer\Models\Customer;
 
 final class CreateCustomerHandler
 {
-    public function __invoke(CreateCustomerCommand $createCustomerCommand)
+    public function __invoke(CreateCustomerCommand $command)
     {
-        $existCustomer = Customer::where('document', $createCustomerCommand->customerDto->document)->first();
-
-        if ($existCustomer) {
-            throw new \Exception('Customer already exists');
-        }
-
         $customer = Customer::create([
-            'name' => $createCustomerCommand->customerDto->name,
-            'document' => $createCustomerCommand->customerDto->document,
-            'birth' => $createCustomerCommand->customerDto->birth,
+            'name' => $command->customerDto->name,
+            'document' => $command->customerDto->document,
+            'birth' => $command->customerDto->birth,
         ]);
 
         return $customer;
